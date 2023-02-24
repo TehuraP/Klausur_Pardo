@@ -1,0 +1,72 @@
+﻿<Window x:Class="Mythological_Animals.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Mythological_Animals"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <DockPanel>
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem>
+                <TextBlock>I am a status bar</TextBlock>
+            </StatusBarItem>
+            <StatusBarItem>
+                <TextBlock>Status 2</TextBlock>
+            </StatusBarItem>
+            <StatusBarItem>
+                <TextBlock>Status 3</TextBlock>
+            </StatusBarItem>
+        </StatusBar>
+        <Menu DockPanel.Dock="Top"  x:Name="Gods">
+            <MenuItem Header="_Gods">
+                <MenuItem Header="new God" Click="MenuItemNeuesProdukt_Click"/>
+                <MenuItem>
+                    <MenuItem.Header>Hephaestus</MenuItem.Header>
+                    <MenuItem.Icon>
+                        <Image Width="20" Source="hephaestus.png"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>                      
+                           
+            </MenuItem>
+            <MenuItem Header="_Myths">
+                <MenuItem Header="Prometheus and the Theft of Fire" >
+                    <StackPanel>
+                        <TextBlock>Unicorn</TextBlock>
+                        <Image Width="40" ></Image>
+                    </StackPanel>
+                </MenuItem>
+                <MenuItem Header="_Copy" />
+                <MenuItem Header="_Paste" />
+            </MenuItem>   
+        </Menu>
+     
+     <ToolBar DockPanel.Dock="Top">
+
+            <Button Content="New" Click="MenuItemNeuesProdukt_Click" />
+            <Button Content="Save" />
+            <Button Content="Remove" Click="MenuItemDelete_Click" />
+        </ToolBar>
+        <StackPanel>
+            <TextBlock Text="Gods and Myths" Background="BlueViolet" FontStyle="Italic" FontWeight="ExtraBold" TextAlignment="Center" Foreground="White" FontSize="20"></TextBlock>
+            <DockPanel>
+                <ListBox Background="ForestGreen"  DockPanel.Dock="Left" 
+                 ItemsSource="{Binding GodData}"
+                 SelectedItem="{Binding ChosenGod}"
+                 >
+                    <ListBox.ItemTemplate >
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"></TextBlock>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <StackPanel Background="Aquamarine">
+                    <TextBlock Text="{Binding ChosenGod.Name}"/>
+                    <TextBlock Text="{Binding ChosenGod.Description}"/>
+                </StackPanel>
+            </DockPanel>
+        </StackPanel>
+        
+       
+    </DockPanel>
+</Window>
