@@ -1,0 +1,25 @@
+﻿<Window x:Class="Mythological_Animals.SecondNewWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Mythological_Animals"
+        mc:Ignorable="d"
+        Title="Add New Myth" Height="250" Width="800">
+    <StackPanel Background="#66cdee" >
+        <TextBlock Height="50"></TextBlock>
+        <DockPanel HorizontalAlignment="Center">
+            <Image Source="myth.png" Width="100"></Image>
+            <StackPanel Margin="15" Width="300">
+                <TextBlock FontStyle="Oblique" FontWeight="Heavy" HorizontalAlignment="Center" Text="Myth's Title"></TextBlock>
+                <TextBox x:Name="Name" Text="{Binding NewMyth.Name}"/>
+                <TextBlock FontStyle="Oblique" FontWeight="Heavy" HorizontalAlignment="Center" Text="Myth's Description"></TextBlock>
+                <TextBox Text="{Binding NewMyth.Description}"/>
+                <TextBlock></TextBlock>
+                <Button Foreground="White" FontWeight="Heavy" Background="#0ea8dc"  Cursor="Pen" Click="Button_Click" >Add Myth</Button>
+            </StackPanel>
+            <Image Source="myth.png" Width="100"></Image>
+        </DockPanel>
+
+    </StackPanel>
+</Window>

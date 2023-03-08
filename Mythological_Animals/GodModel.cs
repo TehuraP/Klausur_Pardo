@@ -19,7 +19,6 @@ namespace Mythological_Animals
             }
         }
 
-
         private string _Name;
         [Key]
         public string Name

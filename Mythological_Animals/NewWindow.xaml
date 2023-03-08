@@ -5,12 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Mythological_Animals"
         mc:Ignorable="d"
-        Title="NewWindow" Height="450" Width="800">
-    <StackPanel>
-        <UniformGrid Columns="3" Rows="1">
-            <TextBox Text="{Binding NewGod.Name}"/>
+        Title="Add New God" Height="250" Width="800">
+    <StackPanel Background="#c1b5e6" >
+        <TextBlock Height="50"></TextBlock>
+        <DockPanel HorizontalAlignment="Center">
+           <Image Source="column.png" Width="100"></Image>
+                 <StackPanel Margin="15" Width="300">            
+             <TextBlock FontStyle="Oblique" FontWeight="Heavy" HorizontalAlignment="Center" Text="Name of The God"></TextBlock>
+            <TextBox x:Name="Name" Text="{Binding NewGod.Name}"/>
+        <TextBlock FontStyle="Oblique" FontWeight="Heavy" HorizontalAlignment="Center" Text="Description of the God"></TextBlock>
             <TextBox Text="{Binding NewGod.Description}"/>
-            <Button Click="ButtonNewGod_Click">Add God</Button>
-        </UniformGrid>
+                <TextBlock></TextBlock>
+                <Button Foreground="White" FontWeight="Heavy" Background="#9975b8"  Cursor="Pen" Click="ButtonNewGod_Click" >Add God</Button>
+        </StackPanel>
+        <Image Source="column.png" Width="100"></Image> 
+        </DockPanel>          
+        
     </StackPanel>
 </Window>

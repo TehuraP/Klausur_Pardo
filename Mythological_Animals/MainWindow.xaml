@@ -3,70 +3,110 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Mythological_Animals"
+        xmlns:local="clr-namespace:Mythological_Animals" d:DataContext="{d:DesignInstance Type=local:ViewModel}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <DockPanel>
+        Title="MainWindow" Height="800" Width="1300">
+    <DockPanel  Background="#c4ace1">
         <StatusBar DockPanel.Dock="Bottom">
             <StatusBarItem>
-                <TextBlock>I am a status bar</TextBlock>
+                <TextBlock Text="{Binding ChosenGod.Name}" ></TextBlock>
             </StatusBarItem>
             <StatusBarItem>
-                <TextBlock>Status 2</TextBlock>
+                <TextBlock >is the Chosen One </TextBlock>
             </StatusBarItem>
             <StatusBarItem>
                 <TextBlock>Status 3</TextBlock>
             </StatusBarItem>
         </StatusBar>
         <Menu DockPanel.Dock="Top"  x:Name="Gods">
-            <MenuItem Header="_Gods">
-                <MenuItem Header="new God" Click="MenuItemNeuesProdukt_Click"/>
-                <MenuItem>
-                    <MenuItem.Header>Hephaestus</MenuItem.Header>
-                    <MenuItem.Icon>
-                        <Image Width="20" Source="hephaestus.png"></Image>
-                    </MenuItem.Icon>
+            <MenuItem Header="_Mythology">
+                <MenuItem Header="_What is it?">
+                    <MenuItem Header="A collection of myths, especially one belonging to a particular religious or cultural tradition."></MenuItem>
+            </MenuItem>
+            <MenuItem>
+                    <MenuItem.Header>_When was it created?</MenuItem.Header>
+                    <MenuItem Header="The earliest known versions of greek myths date back more than 2,700 years, appearing in written form in the works of the Greek poets Homer and Hesiod.">
+                        
+                    </MenuItem>
                 </MenuItem>                      
                            
             </MenuItem>
             <MenuItem Header="_Myths">
-                <MenuItem Header="Prometheus and the Theft of Fire" >
-                    <StackPanel>
-                        <TextBlock>Unicorn</TextBlock>
-                        <Image Width="40" ></Image>
-                    </StackPanel>
+                <MenuItem Header="What are they?">
+                    <MenuItem Header="A collection of myths, especially one belonging to a particular religious or cultural tradition."></MenuItem>
                 </MenuItem>
-                <MenuItem Header="_Copy" />
-                <MenuItem Header="_Paste" />
-            </MenuItem>   
-        </Menu>
-     
+                <MenuItem Header="_Why do we need them?">
+                    <MenuItem Header="Myths are sacred tales that explain the world and man's experience. Myths are as relevant to us today as they were to the ancients. Myths answer timeless questions and serve as a compass to each generation."></MenuItem>
+                 </MenuItem>
+            </MenuItem>          
+        </Menu>     
      <ToolBar DockPanel.Dock="Top">
 
-            <Button Content="New" Click="MenuItemNeuesProdukt_Click" />
-            <Button Content="Save" />
-            <Button Content="Remove" Click="MenuItemDelete_Click" />
+            <Button Content="_Add God" Click="NewGod_Click" />
+            <Button Content=" _Add Myth" Click="NewMyth_Click"  />
+            <Button Content=" _Remove Selected God" Click="MenuItemDelete_Click" />
         </ToolBar>
         <StackPanel>
-            <TextBlock Text="Gods and Myths" Background="BlueViolet" FontStyle="Italic" FontWeight="ExtraBold" TextAlignment="Center" Foreground="White" FontSize="20"></TextBlock>
+            <StackPanel Background="#a36f9a" >
+                <DockPanel HorizontalAlignment="Center">
+                    <Image Source="ruin.png" Width="50"></Image>
+                    <TextBlock Margin="15"  Text="Gods and Myths of The Greek Mythology"  FontStyle="Italic" FontWeight="ExtraBold" TextAlignment="Center" Foreground="White" FontSize="20"></TextBlock>
+                    <Image Source="ruin.png" Width="50"></Image>
+                </DockPanel>
+                
+            </StackPanel>
+            
+
             <DockPanel>
-                <ListBox Background="ForestGreen"  DockPanel.Dock="Left" 
+                <StackPanel DockPanel.Dock="Left">                 
+                    <TextBlock FontSize="20" Padding="10" Background="#ccc0e4" Foreground="Beige" Text="List of Greek Gods" FontWeight="ExtraBold"></TextBlock>
+                    <ListBox FontWeight="Bold" Foreground="#098ba1" FontSize="15" Cursor="Hand" Background="#cdc1e5"  DockPanel.Dock="Left" 
+                 ItemsSource="{Binding GodDataFromCode}"
+                 SelectedItem="{Binding ChosenGod}"
+                 >                        
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}"></TextBlock>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <ListBox FontWeight="Bold" Foreground="#098ba1" FontSize="15" Cursor="Hand" Background="#ccc0e4"  DockPanel.Dock="Left" 
                  ItemsSource="{Binding GodData}"
                  SelectedItem="{Binding ChosenGod}"
                  >
-                    <ListBox.ItemTemplate >
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Name}"></TextBlock>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-                <StackPanel Background="Aquamarine">
-                    <TextBlock Text="{Binding ChosenGod.Name}"/>
-                    <TextBlock Text="{Binding ChosenGod.Description}"/>
+                        <ListBox.ItemTemplate >
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}"></TextBlock>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                 </StackPanel>
-            </DockPanel>
+                <StackPanel Margin="10" DockPanel.Dock="Right" >
+                    <Button FontSize="25" FontWeight="DemiBold" Cursor="AppStarting" Click="Button_Myths_Click" Content="Go to Myths" Height="50"></Button>
+                    <StackPanel>
+                                                
+                        <TextBlock Height="30" FontSize="20" Text="Upload your image here!">                          
+                        </TextBlock>
+                        <Button Content="Open File Explorer" Click="openFile"></Button>
+                        <TextBlock></TextBlock>
+                        <Image x:Name="uploadedImage" Width="200" Height="200" />
+
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Center">                    
+                    <TextBlock  HorizontalAlignment="Center" FontWeight="ExtraBold" FontSize="30"  Text="{Binding ChosenGod.Name}"/>                   
+                    <TextBlock Height="10"></TextBlock>
+                    <TextBlock TextWrapping="Wrap" Width="500" FontSize="20" TextAlignment="Justify" Text="{Binding ChosenGod.Description}"/>
+                    <TextBlock Height="50"></TextBlock>
+                    <Image Width="500" Height="300" Source="{Binding ChosenGod.Photo}"></Image>                           
+                </StackPanel>             
+            </DockPanel>            
+            <StackPanel DockPanel.Dock="Bottom">
+          
+              
+            </StackPanel>
         </StackPanel>
-        
        
     </DockPanel>
+            
 </Window>
