@@ -6,6 +6,31 @@
         xmlns:local="clr-namespace:Mythological_Animals" d:DataContext="{d:DesignInstance Type=local:ViewModel}"
         mc:Ignorable="d"
         Title="MainWindow" Height="800" Width="1300">
+    <Window.Resources>
+
+        <Style x:Key="MyButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#9965c8"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="BorderBrush" Value="Gray"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <DockPanel  Background="#c4ace1">
         <StatusBar DockPanel.Dock="Bottom">
             <StatusBarItem>
@@ -13,9 +38,6 @@
             </StatusBarItem>
             <StatusBarItem>
                 <TextBlock >is the Chosen One </TextBlock>
-            </StatusBarItem>
-            <StatusBarItem>
-                <TextBlock>Status 3</TextBlock>
             </StatusBarItem>
         </StatusBar>
         <Menu DockPanel.Dock="Top"  x:Name="Gods">
@@ -58,8 +80,8 @@
             
 
             <DockPanel>
-                <StackPanel DockPanel.Dock="Left">                 
-                    <TextBlock FontSize="20" Padding="10" Background="#ccc0e4" Foreground="Beige" Text="List of Greek Gods" FontWeight="ExtraBold"></TextBlock>
+                <StackPanel DockPanel.Dock="Left">
+                    <TextBlock FontSize="20" Padding="10" Background="#b082c8" Foreground="Beige" Text="List of Greek Gods" FontWeight="ExtraBold"></TextBlock>
                     <ListBox FontWeight="Bold" Foreground="#098ba1" FontSize="15" Cursor="Hand" Background="#cdc1e5"  DockPanel.Dock="Left" 
                  ItemsSource="{Binding GodDataFromCode}"
                  SelectedItem="{Binding ChosenGod}"
@@ -80,31 +102,34 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-                </StackPanel>
-                <StackPanel Margin="10" DockPanel.Dock="Right" >
-                    <Button FontSize="25" FontWeight="DemiBold" Cursor="AppStarting" Click="Button_Myths_Click" Content="Go to Myths" Height="50"></Button>
-                    <StackPanel>
-                                                
-                        <TextBlock Height="30" FontSize="20" Text="Upload your image here!">                          
-                        </TextBlock>
-                        <Button Content="Open File Explorer" Click="openFile"></Button>
-                        <TextBlock></TextBlock>
-                        <Image x:Name="uploadedImage" Width="200" Height="200" />
+                    <StackPanel DockPanel.Dock="Left">
 
+                        <TextBox Text="{Binding searchTerm}"></TextBox>
+                        <Button Style="{StaticResource MyButtonStyle}" Click="Button_Click_1">Search in the Database</Button>
                     </StackPanel>
                 </StackPanel>
-                <StackPanel HorizontalAlignment="Center">                    
-                    <TextBlock  HorizontalAlignment="Center" FontWeight="ExtraBold" FontSize="30"  Text="{Binding ChosenGod.Name}"/>                   
+                <StackPanel Margin="10" DockPanel.Dock="Right" >
+                    <TextBlock Height="50"></TextBlock>
+                            <Button Style="{StaticResource MyButtonStyle}" Cursor="AppStarting" Click="Button_Myths_Click" Content="Go to Myths" Height="50"></Button>
+               
+                    <StackPanel DockPanel.Dock="Bottom">
+                        <TextBlock Height="200"></TextBlock>
+                        <TextBlock Height="30" FontSize="20" Margin="10" Text="Upload your image here!">                          
+                        </TextBlock>
+                        <Button Style="{StaticResource MyButtonStyle}" Content="Open File Explorer" Click="openFile"></Button>
+                        <TextBlock></TextBlock>
+                        <Image x:Name="uploadedImage" Width="200" Height="200" />
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Center">
+                    <TextBlock  HorizontalAlignment="Center" Foreground="#5c497e" FontWeight="ExtraBold" FontSize="30"  Text="{Binding ChosenGod.Name}"/>                   
                     <TextBlock Height="10"></TextBlock>
-                    <TextBlock TextWrapping="Wrap" Width="500" FontSize="20" TextAlignment="Justify" Text="{Binding ChosenGod.Description}"/>
+                    <TextBlock TextWrapping="Wrap" Width="500" Foreground="#5c497e" FontSize="20" TextAlignment="Justify" Text="{Binding ChosenGod.Description}"/>
                     <TextBlock Height="50"></TextBlock>
                     <Image Width="500" Height="300" Source="{Binding ChosenGod.Photo}"></Image>                           
-                </StackPanel>             
+                </StackPanel>   
             </DockPanel>            
-            <StackPanel DockPanel.Dock="Bottom">
-          
-              
-            </StackPanel>
+            
         </StackPanel>
        
     </DockPanel>

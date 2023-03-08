@@ -44,8 +44,6 @@ namespace Mythological_Animals
             set { _ChosenMyth = value; RaisePropertyChanged("ChosenMyth"); }
         }
 
-        public ObservableCollection<MythModel> MythDataFromCode2 { get; set; }
-
         MythContext _ctx = new MythContext();
 
         public void AddGod()
@@ -56,8 +54,7 @@ namespace Mythological_Animals
                 Name = NewGod.Name,
             };
 
-            //Zur DB hinzufügen
-            //_ctx.Produkte.Add(NeuesProdukt);
+           
             _ctx.listOfGods.Add(neuerGott);
             _ctx.SaveChanges();
             GodData.Add(neuerGott);
@@ -71,20 +68,32 @@ namespace Mythological_Animals
                 Name = NewMyth.Name,
             };
 
-            //Zur DB hinzufügen
-            //_ctx.Produkte.Add(NeuesProdukt);
             _ctx.listOfMyths.Add(newMyth);
             _ctx.SaveChanges();
             MythData.Add(newMyth);
         }
 
+        public string searchTerm { get; set; }
+        internal void FilterMyths()
+        {
+            GodData = new ObservableCollection<GodModel>();
+            foreach (GodModel myth in
+                _ctx.listOfGods.Where(p => p.Name.Contains(searchTerm)))
+            {
+                GodData.Add(myth);
+            }
+            RaisePropertyChanged("GodData");
+            RaisePropertyChanged("Name");            
+        }
+
+
 
         public void FillGodsFromDB()
         {
             GodData = new ObservableCollection<GodModel>();
-            foreach (GodModel produkt in _ctx.listOfGods)
+            foreach (GodModel god in _ctx.listOfGods)
             {
-                GodData.Add(produkt);
+                GodData.Add(god);
             }
 
         }

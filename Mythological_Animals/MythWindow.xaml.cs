@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -25,14 +27,8 @@ namespace Mythological_Animals
         {
             InitializeComponent();
 
-            ViewModel vm = new ViewModel();       
-
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Storyboard sb = (Storyboard)FindResource("RotateAnimation");
-            sb.Begin(kittie);
+            ViewModel vm = new ViewModel();
+            this.DataContext = vm;
         }
 
     }

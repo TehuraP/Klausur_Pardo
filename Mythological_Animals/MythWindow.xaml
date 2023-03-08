@@ -17,7 +17,7 @@
         <DockPanel>
             <StackPanel DockPanel.Dock="Right" Width="300">
                 <TextBlock FontSize="20" Padding="10" Background="#098ba1" Foreground="Beige" Text="Myths" FontWeight="ExtraBold" ></TextBlock>
-                <ListBox FontWeight="Bold" Foreground=" #cdc1e5" FontSize="15" Cursor="Hand" Background="#098ba1"  DockPanel.Dock="Right" 
+                <ListBox FontWeight="Bold" Foreground=" #daa1d3" FontSize="15" Cursor="Hand" Background="#51b0c7"  DockPanel.Dock="Right" 
                  ItemsSource="{Binding MythDataFromCode}"
                  SelectedItem="{Binding ChosenMyth}"
                  >
@@ -27,7 +27,7 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                <ListBox FontWeight="Bold" Foreground="#cdc1e5" FontSize="15" Cursor="Hand" Background="#098ba1"  DockPanel.Dock="Right" 
+                <ListBox FontWeight="Bold" Foreground="#daa1d3" FontSize="15" Cursor="Hand" Background="#51b0c7"  DockPanel.Dock="Right" 
                  ItemsSource="{Binding MythData}"
                  SelectedItem="{Binding ChosenMyth}"
                  >
@@ -46,8 +46,7 @@
                         </TransformGroup>
                     </Image.RenderTransform>
                 </Image>
-                <Button Click="Button_Click">Bounce!</Button>
-            </StackPanel>
+               </StackPanel>
             
             <StackPanel HorizontalAlignment="Center">
                 <TextBlock Height="20"></TextBlock>
@@ -56,7 +55,7 @@
                 <TextBlock Foreground="#063970" TextWrapping="Wrap" Width="500" TextAlignment="Justify" Text="{Binding ChosenMyth.Description}"/>
                 <TextBlock Height="20"></TextBlock>
                 <Image Width="300" Height="250" Source="{Binding ChosenMyth.Photo}"></Image>
-      
+                <TextBlock Height="100"></TextBlock>
             </StackPanel>
         </DockPanel>
     </DockPanel>

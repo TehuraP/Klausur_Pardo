@@ -208,7 +208,11 @@ namespace Mythological_Animals
             mythWindow.DataContext = vm;
             mythWindow.ShowDialog();
         }
-
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            ViewModel vm = this.DataContext as ViewModel;
+            vm.FilterMyths();
+        }
         private void OnDrop(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
